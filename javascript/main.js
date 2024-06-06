@@ -1,40 +1,33 @@
-document.getElementById("fetch-btn").addEventListener("click", async () => {
-    const button = document.getElementById('fetch-btn');
-    const swapiData = await getSwapiData();
-    console.log(swapiData);
+"use strict";
 
-    // Toggle lightsaber effect
-    if (button.classList.contains('lightsaber-activate')) {
-        button.classList.remove('lightsaber-activate');
-        button.classList.add('lightsaber-deactivate');
-        button.textContent = 'Activate Lightsaber';
-    } else {
-        button.classList.remove('lightsaber-deactivate');
-        button.classList.add('lightsaber-activate');
-        button.textContent = 'Deactivate Lightsaber';
-    }
+document.getElementById("fetch-btn").addEventListener("click", async () => {
+    const allCharacters = await getAllSwapiCharacters();
+    console.log(allCharacters);
+    displayCharacters(allCharacters);
 });
 
-/**
- * Gets data from the SWAPI API
- *
- * @returns {Object} Data from SWAPI
- */
-const getSwapiData = async () => {
-    // Gets data from SWAPI
-    console.log("Getting data from SWAPI");
-    const response = await fetch("https://swapi.dev/api/people/1");
-    const data = await response.json();
-    return data;
+const getAllSwapiCharacters = async () => {
+    let allCharacters = [];
+    let nextPage = "https://swapi.dev/api/people/";
+
+    // Fetch all pages until there are no more pages left
+    while (nextPage) {
+        const response = await fetch(nextPage);
+        const data = await response.json();
+        allCharacters = [...allCharacters, ...data.results];
+        nextPage = data.next; // The URL of the next page, or null if no more pages
+    }
+
+    return allCharacters;
 };
 
 const displayCharacters = (characters) => {
-    const outputBox = document.getElementById('output');
-    outputBox.innerHTML = ''; // Clear previous content
+    const outputBox = document.getElementById("output");
+    outputBox.innerHTML = ""; // Clear previous content
 
-    characters.forEach(character => {
-        const characterElement = document.createElement('div');
-        characterElement.classList.add('character');
+    characters.forEach((character) => {
+        const characterElement = document.createElement("div");
+        characterElement.classList.add("character");
         characterElement.innerHTML = `
             <h2>${character.name}</h2>
             <p>Height: ${character.height}</p>

@@ -57,5 +57,5 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Example: change rotation speed (you can call this function with different values)
-    setRotationSpeed(30); // Change this value to set a different rotation speed
+    setRotationSpeed(10); // Change this value to set a different rotation speed
 });
