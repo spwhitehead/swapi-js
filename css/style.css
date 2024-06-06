@@ -1,30 +1,36 @@
 body {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #171717;
-    color: #e7e7e7;
-    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    background-color: #222;
+    overflow: hidden;
+    cursor: none; /* Hide the default cursor */
 }
 
-button {
-    background-color: #00bbf0;
-    border: 2px #171717;
-    border-radius: 5px;
-    padding: 5px;
-    transition: 0.3s;
+#custom-cursor {
+    position: absolute;
+    width: 10px;
+    height: 40px;
+    background-color: #333;
+    border-radius: 5px 5px 0 0;
+    border: 2px solid #444;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    pointer-events: none; /* Prevents cursor from interfering with other elements */
+    transition: height 0.2s;
 }
 
-button:hover {
-    background-color: goldenrod;
-    box-shadow: rgba(25, 2, 18, 10);
-    transition: 0.3s;
-
-}
-
-button:active {
-    background-color: green;
-    transform: scale(0.95);
-    transition: 0.2s;
+#blade {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0.2));
+    box-shadow: 0 0 20px 10px rgba(0, 255, 0, 0.5);
+    border-radius: 0 0 5px 5px;
+    transition: height 0.2s ease-in-out;
 }
