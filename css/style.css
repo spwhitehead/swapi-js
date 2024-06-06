@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #171717;
+    color: #e7e7e7;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    background-color: #00bbf0;
+    border: 2px #171717;
+    border-radius: 5px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: goldenrod;
+    box-shadow: rgba(25, 2, 18, 10);
+    transition: 0.3s;
+
+}
+
+button:active {
+    background-color: green;
+    transform: scale(0.95);
+    transition: 0.2s;
+}
