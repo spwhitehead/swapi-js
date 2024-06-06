@@ -8,7 +8,7 @@ body {
     height: 100vh;
     background-color: #000; /* Background color for the night sky */
     overflow: hidden;
-    color: #fff; /* Text color for better contrast */
+    color: rgb(221, 184, 17); /* Text color for better contrast */
 }
 
 .stars, .twinkling {
@@ -50,7 +50,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.8); /*Semi-transparent background */
+    /* background-color: rgba(0, 0, 0, 0.8);*/ /* Semi-transparent background */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -65,12 +65,37 @@ body {
 .button {
     margin-bottom: 20px;
 }
+    
 
 #output {
+    color: yellow; /* Set text color to yellow */
+    font-family: "Star Jedi", sans-serif; /* Use a Star Wars-like font */
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
-    gap: 10px; /* Adjust the gap between items if needed */
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 60vh; /* Height to enable scrolling */
     overflow-y: auto; /* Enable vertical scrolling */
-}
+    padding: 20px; /* Add some padding for better readability */
+    }
+    /* Create a scrolling effect */
+    @keyframes crawl {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(calc(-100% + 60vh));
+    }
+    }
+    /* Apply the scrolling effect to the output */
+    #output::before {
+    content: " "; /* Required for pseudo elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it's behind the text */
+    animation: crawl 120s linear infinite; /* Adjust speed as needed */
+    }
